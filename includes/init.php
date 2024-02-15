@@ -35,11 +35,9 @@ add_action('init', function () {
 
         if ($post->post_type === 'tsml_meeting') {
 
-            //when TSML UI is enabled, redirect legacy meeting detail page to TSML UI detail page
+            //when TSML UI is enabled, show archive page (react router will show detail)
             if ($tsml_user_interface === 'tsml_ui') {
-                $mtg_permalink = get_post_type_archive_link('tsml_meeting');
-                wp_redirect(add_query_arg('meeting', $post->post_name, $mtg_permalink));
-                exit;
+                return dirname(__FILE__) . '/../templates/archive-tsml-ui.php';
             }
 
             //user has a custom meeting detail page
