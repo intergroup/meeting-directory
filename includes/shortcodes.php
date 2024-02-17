@@ -107,10 +107,10 @@ add_shortcode('tsml_types_list', function () {
 });
 
 //output a react meeting finder widget https://github.com/code4recovery/tsml-ui
-function tsml_ui()
+function tsml_ui($path = '')
 {
     global $tsml_mapbox_key, $tsml_nonce, $tsml_conference_providers, $tsml_language, $tsml_programs, $tsml_program, $tsml_ui_config,
-    $tsml_feedback_addresses, $tsml_cache, $tsml_cache_writable, $tsml_distance_units, $tsml_columns, $tsml_slug;
+    $tsml_feedback_addresses, $tsml_cache, $tsml_cache_writable, $tsml_distance_units, $tsml_columns;
 
     //enqueue app script
     $js = defined('TSML_UI_PATH') ? TSML_UI_PATH : 'https://tsml-ui.code4recovery.org/app.js';
@@ -153,7 +153,7 @@ function tsml_ui()
     $data = $url['path'] . '?' . $url['query'];
 
     return '<div id="tsml-ui"
-        data-path="/' . $tsml_slug . '"
+        data-path="' . $path . '"
         data-src="' . $data . '"
         data-timezone="' . wp_timezone_string() . '"
         data-mapbox="' . $tsml_mapbox_key . '"></div>';
